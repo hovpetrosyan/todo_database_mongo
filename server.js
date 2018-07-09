@@ -18,13 +18,11 @@ db.once('open',function(){
 const Schema = mongoose.Schema;
 
 const todoScheme = new Schema({
-	todo:String,
-	myid:Number
+	todo:String
 });
-todoScheme.statics.createToDo = function(todo,id,res){
+todoScheme.statics.createToDo = function(todo,res){
 	let todo_item = new TODO({
-		todo:todo,
-		myid:id
+		todo:todo
 	});
 	todo_item.save().then(() => {TODO.AllDataSender(res);console.log('new ToDo saved! ')});
 }
@@ -32,10 +30,10 @@ todoScheme.statics.AllDataSender = function(res){
 	let data = this.find().then((data) => res.json({data:data}));
 }
 todoScheme.statics.deleteToDo = function(id,res){
-	this.deleteOne({myid:id}).then(() => {TODO.AllDataSender(res); });
+	this.deleteOne({_id:id}).then(() => {TODO.AllDataSender(res); });
 }
 todoScheme.statics.updateToDo =function(id,data,res){
-	this.update({myid:id},{$set:{todo:data}}).then(() => {TODO.AllDataSender(res);});
+	this.update({_id:id},{$set:{todo:data}}).then(() => {TODO.AllDataSender(res);});
 }
 const TODO = mongoose.model('Todo',todoScheme);
 
@@ -62,7 +60,7 @@ app.get('/',function(req,res){
 app.post('/api/todo/',function(req,res){
 	console.log(req.body);
 	if(req.body.data){
-		TODO.createToDo(req.body.data,id++,res);
+		TODO.createToDo(req.body.data,res);
 		//todo_arr.push({todo:req.body.data,id:id++});	
 	}
 	//res.json({data:todo_arr});

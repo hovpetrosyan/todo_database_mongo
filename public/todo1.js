@@ -89,7 +89,7 @@ class Table extends Component{
 	mapItemToRow(item) {
 		const {del, edit} = this.props;
 		let todo = item.todo;
-		return '<tr><td><input name = "todo" id = '+ item.myid +' value = "'+todo+'"></td><td><button class="add" onclick="sendReq('+"'put',"+item.myid+')">'+edit+'</button></td><td><button class="add" onclick="sendReq('+"'delete',"+item.myid+')">'+del+'</button></td><tr>'
+		return `<tr><td><input name="todo" id="${item._id}" value ="${todo}"></td><td><button class="add" onclick="sendReq('put','${item._id}')">${edit}</button></td><td><button class="add" onclick="sendReq('delete', '${item._id}')">${del}</button></td><tr>`;
 	}
 
 	render(){
