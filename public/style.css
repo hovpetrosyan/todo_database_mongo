@@ -1,0 +1,30 @@
+table{
+	position:absolute;
+	left:50%;
+	border:5px solid #42526b;
+	border-radius: 1%;
+}
+button{
+	height: 30px;
+	background-color: black;
+	border: 1px solid red;
+	border-radius: 20%;
+	box-shadow: 3px 3px gray;
+	color: white;
+}
+button:hover{
+	background-color: gray;
+	color: blue;
+}
+button:active{
+	transform:translate(2px,2px);
+	box-shadow: 1px 1px solid black;
+}
+input{
+	background-color: #e5e7ea;
+	color: #0c3470;
+	text-align: center;
+}
+body {
+  background: linear-gradient(to right, rgba(255,0,0,0), rgba(88, 93, 102));
+}
